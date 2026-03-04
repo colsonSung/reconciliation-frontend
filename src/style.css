@@ -1,79 +1,253 @@
+/* Apple Style Design Tokens */
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* 苹果配色方案 - 浅色柔和色调 */
+  --apple-bg-primary: #F5F5F7;
+  --apple-bg-secondary: #FFFFFF;
+  --apple-bg-tertiary: #F2F2F7;
+  --apple-bg-hover: #E8E8ED;
+  
+  /* 文字颜色 */
+  --apple-text-primary: #1D1D1F;
+  --apple-text-secondary: #86868B;
+  --apple-text-tertiary: #A1A1A6;
+  
+  /* 强调色 */
+  --apple-accent-blue: #0071E3;
+  --apple-accent-blue-hover: #0077ED;
+  --apple-accent-green: #34C759;
+  --apple-accent-orange: #FF9500;
+  --apple-accent-red: #FF3B30;
+  
+  /* 圆角 */
+  --apple-radius-sm: 8px;
+  --apple-radius-md: 12px;
+  --apple-radius-lg: 18px;
+  --apple-radius-xl: 24px;
+  
+  /* 阴影 */
+  --apple-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --apple-shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --apple-shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
+  
+  /* 间距 */
+  --apple-spacing-xs: 8px;
+  --apple-spacing-sm: 12px;
+  --apple-spacing-md: 16px;
+  --apple-spacing-lg: 24px;
+  --apple-spacing-xl: 32px;
+  
+  /* 字体 */
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
+  
+  color-scheme: light;
+  color: var(--apple-text-primary);
+  background-color: var(--apple-bg-primary);
+  
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+* {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-.card {
-  padding: 2em;
+  background: var(--apple-bg-primary);
 }
 
 #app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  width: 100%;
+  min-height: 100vh;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+/* 苹果风格卡片 */
+.apple-card {
+  background: var(--apple-bg-secondary);
+  border-radius: var(--apple-radius-lg);
+  box-shadow: var(--apple-shadow-sm);
+  border: none;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.apple-card:hover {
+  box-shadow: var(--apple-shadow-md);
+  transform: translateY(-2px);
+}
+
+/* 苹果风格按钮 */
+.el-button--primary {
+  background: var(--apple-accent-blue) !important;
+  border-color: var(--apple-accent-blue) !important;
+  border-radius: var(--apple-radius-sm) !important;
+  font-weight: 500;
+  padding: 10px 20px;
+  transition: all 0.2s ease;
+}
+
+.el-button--primary:hover {
+  background: var(--apple-accent-blue-hover) !important;
+  border-color: var(--apple-accent-blue-hover) !important;
+  transform: scale(1.02);
+}
+
+.el-button {
+  border-radius: var(--apple-radius-sm) !important;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.el-button:hover {
+  transform: scale(1.02);
+}
+
+/* 输入框苹果风格 */
+.el-input__wrapper {
+  border-radius: var(--apple-radius-sm) !important;
+  box-shadow: none !important;
+  border: 1px solid #E5E5EA;
+  transition: all 0.2s ease;
+}
+
+.el-input__wrapper:hover,
+.el-input__wrapper.is-focus {
+  border-color: var(--apple-accent-blue) !important;
+  box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.1) !important;
+}
+
+/* 表格苹果风格 */
+.el-table {
+  --el-table-border-color: #E5E5EA;
+  --el-table-header-bg-color: var(--apple-bg-tertiary);
+  border-radius: var(--apple-radius-md);
+  overflow: hidden;
+}
+
+.el-table th.el-table__cell {
+  background: var(--apple-bg-tertiary) !important;
+  font-weight: 600;
+  color: var(--apple-text-primary);
+}
+
+.el-table tr:hover > td.el-table__cell {
+  background: var(--apple-bg-hover) !important;
+}
+
+/* 标签苹果风格 */
+.el-tag {
+  border-radius: var(--apple-radius-sm) !important;
+  border: none;
+  font-weight: 500;
+}
+
+/* 菜单苹果风格 */
+.el-menu {
+  border-right: none !important;
+}
+
+/* 标签页苹果风格 */
+.el-tabs__item {
+  font-weight: 500;
+  color: var(--apple-text-secondary);
+}
+
+.el-tabs__item.is-active {
+  color: var(--apple-accent-blue);
+}
+
+/* 提示信息 */
+.el-message {
+  border-radius: var(--apple-radius-md) !important;
+  border: none !important;
+  box-shadow: var(--apple-shadow-md) !important;
+}
+
+/* 对话框 */
+.el-dialog {
+  border-radius: var(--apple-radius-lg) !important;
+  border: none !important;
+  box-shadow: var(--apple-shadow-lg) !important;
+}
+
+.el-dialog__header {
+  border-bottom: 1px solid #E5E5EA;
+  padding-bottom: var(--apple-spacing-md);
+}
+
+.el-dialog__title {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+/* 分页苹果风格 */
+.el-pagination {
+  --el-pagination-button-bg-color: var(--apple-bg-secondary);
+  --el-pagination-hover-color: var(--apple-accent-blue);
+}
+
+.el-pager li {
+  border-radius: var(--apple-radius-sm) !important;
+  margin: 0 2px;
+}
+
+.el-pager li.is-active {
+  background: var(--apple-accent-blue) !important;
+}
+
+/* 选择器 */
+.el-select .el-input__wrapper {
+  border-radius: var(--apple-radius-sm) !important;
+}
+
+/* 下拉菜单 */
+.el-select-dropdown {
+  border-radius: var(--apple-radius-md) !important;
+  border: none !important;
+  box-shadow: var(--apple-shadow-lg) !important;
+}
+
+.el-select-dropdown__item.is-selected {
+  color: var(--apple-accent-blue);
+  font-weight: 500;
+}
+
+/* 滚动条 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D1D1D6;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #AEAEB2;
+}
+
+/* 标题样式 */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--apple-text-primary);
+  font-weight: 600;
+}
+
+/* 链接 */
+a {
+  color: var(--apple-accent-blue);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--apple-accent-blue-hover);
 }

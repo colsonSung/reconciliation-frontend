@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
+import Layout from '../components/Layout.vue'
 
 const routes: RouteRecordRaw[] = [
   {
@@ -9,27 +10,50 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: '/',
-    name: 'Dashboard',
-    component: () => import('../views/Dashboard.vue'),
-    meta: { requiresAuth: true }
-  },
-  {
-    path: '/channels',
-    name: 'Channels',
-    component: () => import('../views/Channels.vue'),
-    meta: { requiresAuth: true }
-  },
-  {
-    path: '/results',
-    name: 'Results',
-    component: () => import('../views/Results.vue'),
-    meta: { requiresAuth: true }
-  },
-  {
-    path: '/export',
-    name: 'Export',
-    component: () => import('../views/Export.vue'),
-    meta: { requiresAuth: true }
+    component: Layout,
+    meta: { requiresAuth: true },
+    children: [
+      {
+        path: '',
+        name: 'Dashboard',
+        component: () => import('../views/Dashboard.vue')
+      },
+      {
+        path: 'channels',
+        name: 'Channels',
+        component: () => import('../views/Channels.vue')
+      },
+      {
+        path: 'task-schedule',
+        name: 'TaskSchedule',
+        component: () => import('../views/TaskSchedule.vue')
+      },
+      {
+        path: 'settlement',
+        name: 'Settlement',
+        component: () => import('../views/Settlement.vue')
+      },
+      {
+        path: 'results',
+        name: 'Results',
+        component: () => import('../views/Results.vue')
+      },
+      {
+        path: 'export',
+        name: 'Export',
+        component: () => import('../views/Export.vue')
+      },
+      {
+        path: 'report-config',
+        name: 'ReportConfig',
+        component: () => import('../views/ReportConfig.vue')
+      },
+      {
+        path: 'templates',
+        name: 'Templates',
+        component: () => import('../views/Templates.vue')
+      }
+    ]
   }
 ]
 

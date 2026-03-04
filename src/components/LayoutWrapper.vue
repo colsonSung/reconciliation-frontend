@@ -18,6 +18,14 @@
           <el-icon><Connection /></el-icon>
           <span>通道管理</span>
         </el-menu-item>
+        <el-menu-item index="/task-schedule">
+          <el-icon><Timer /></el-icon>
+          <span>任务调度</span>
+        </el-menu-item>
+        <el-menu-item index="/settlement">
+          <el-icon><Wallet /></el-icon>
+          <span>结算管理</span>
+        </el-menu-item>
         <el-menu-item index="/results">
           <el-icon><List /></el-icon>
           <span>对账结果</span>
@@ -46,7 +54,7 @@
 import { computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useAuthStore } from '../stores/auth'
-import { DataAnalysis, Connection, List, Download } from '@element-plus/icons-vue'
+import { DataAnalysis, Connection, Timer, Wallet, List, Download } from '@element-plus/icons-vue'
 
 const router = useRouter()
 const route = useRoute()
