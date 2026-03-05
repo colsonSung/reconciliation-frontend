@@ -74,3 +74,12 @@ export const reconciliationApi = {
   create: (data: any) => fetchWithAuth('/reconciliation', { method: 'POST', body: JSON.stringify(data) }),
   execute: (id: number) => fetchWithAuth(`/reconciliation/${id}/execute`, { method: 'POST' }),
 }
+
+// Reconciliation Annotation API
+export const annotationApi = {
+  annotate: (detailId: number, reason?: string, annotation?: string) => 
+    fetchWithAuth(`/reconciliation/${detailId}/annotate`, { 
+      method: 'PATCH', 
+      body: JSON.stringify({ reason, annotation }) 
+    }),
+}

@@ -260,7 +260,11 @@ const submitAnnotation = async () => {
   
   submitting.value = true
   try {
-    await new Promise(resolve => setTimeout(resolve, 500))
+    await annotationApi.annotate(
+        currentAnnotation.value.id,
+        selectedReason.value || null,
+        (selectedReason.value || customReason.value || "") + (annotationNote.value ? ` (${annotationNote.value})` : "")
+      )
     
     const annotationText = selectedReason.value || customReason.value || ''
     const idx = tableData.value.findIndex(x => x.orderNo === currentAnnotation.value?.orderNo)
