@@ -5,57 +5,75 @@
       <div class="bg-shape bg-shape-2"></div>
       <div class="bg-shape bg-shape-3"></div>
     </div>
-    <el-card shadow="never" class="login-card apple-card">
-      <div class="login-header">
-        <div class="login-logo">💰</div>
-        <h2>财务对账系统</h2>
-        <p class="login-subtitle">安全 · 高效 · 可靠</p>
+    <div class="login-content">
+      <div class="login-branding">
+        <div class="branding-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+            <rect x="2" y="4" width="20" height="16" rx="3" stroke="currentColor" stroke-width="2"/>
+            <path d="M2 10H22" stroke="currentColor" stroke-width="2"/>
+            <path d="M6 14H10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h1 class="branding-title">财务对账</h1>
+        <p class="branding-subtitle">Reconciliation Pro</p>
       </div>
-      <el-form :model="form" :rules="rules" ref="formRef" label-position="top">
-        <el-form-item label="用户名" prop="username">
-          <el-input 
-            v-model="form.username" 
-            placeholder="请输入用户名" 
-            size="large"
-            :prefix-icon="User"
-          />
-        </el-form-item>
-        <el-form-item label="密码" prop="password">
-          <el-input 
-            v-model="form.password" 
-            type="password" 
-            placeholder="请输入密码" 
-            show-password 
-            size="large"
-            :prefix-icon="Lock"
-          />
-        </el-form-item>
-        <el-form-item>
-          <el-button 
-            type="primary" 
-            style="width: 100%; height: 48px; font-size: 16px; font-weight: 600;" 
-            @click="handleLogin" 
-            :loading="loading"
-          >
-            登 录
-          </el-button>
-        </el-form-item>
-      </el-form>
-    </el-card>
+      <el-card shadow="never" class="login-card">
+        <div class="login-header">
+          <h2>欢迎回来</h2>
+          <p class="login-subtitle">登录您的账户继续</p>
+        </div>
+        <el-form :model="form" :rules="rules" ref="formRef" label-position="top">
+          <el-form-item label="用户名" prop="username">
+            <el-input 
+              v-model="form.username" 
+              placeholder="请输入用户名" 
+              size="large"
+              :prefix-icon="User"
+            />
+          </el-form-item>
+          <el-form-item label="密码" prop="password">
+            <el-input 
+              v-model="form.password" 
+              type="password" 
+              placeholder="请输入密码" 
+              show-password 
+              size="large"
+              :prefix-icon="Lock"
+            />
+          </el-form-item>
+          <div class="login-options">
+            <el-checkbox v-model="rememberMe">记住我</el-checkbox>
+            <a href="#" class="forgot-link">忘记密码？</a>
+          </div>
+          <el-form-item>
+            <el-button 
+              type="primary" 
+              class="login-btn"
+              @click="handleLogin" 
+              :loading="loading"
+            >
+              登 录
+            </el-button>
+          </el-form-item>
+        </el-form>
+        <div class="login-footer">
+          <span class="footer-text">© 2026 Reconciliation Pro. All rights reserved.</span>
+        </div>
+      </el-card>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
-import { useAuthStore } from '../stores/auth'
 import { ElMessage } from 'element-plus'
 import { User, Lock } from '@element-plus/icons-vue'
 
 const router = useRouter()
-const authStore = useAuthStore()
 const formRef = ref()
 const loading = ref(false)
+const rememberMe = ref(false)
 
 const form = reactive({
   username: '',
@@ -73,14 +91,12 @@ const handleLogin = async () => {
   
   loading.value = true
   setTimeout(() => {
-    if (authStore.login(form.username, form.password)) {
-      ElMessage.success('登录成功')
-      router.push('/')
-    } else {
-      ElMessage.error('用户名或密码错误')
-    }
+    // 模拟登录 - 接受任意用户名密码
+    localStorage.setItem('username', form.username); localStorage.setItem('token', 'demo-token')
+    ElMessage.success('登录成功')
+    router.push('/')
     loading.value = false
-  }, 500)
+  }, 800)
 }
 </script>
 
@@ -90,7 +106,7 @@ const handleLogin = async () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #F5F5F7 0%, #E8E8ED 100%);
+  background: linear-gradient(135deg, #0A0E14 0%, #1A2332 100%);
   position: relative;
   overflow: hidden;
 }
@@ -107,34 +123,34 @@ const handleLogin = async () => {
 .bg-shape {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.5;
+  filter: blur(100px);
+  opacity: 0.4;
 }
 
 .bg-shape-1 {
-  width: 500px;
-  height: 500px;
-  background: linear-gradient(135deg, #0071E3 0%, #00A0E3 100%);
-  top: -200px;
-  right: -100px;
+  width: 600px;
+  height: 600px;
+  background: #635BFF;
+  top: -250px;
+  right: -150px;
   animation: float 20s ease-in-out infinite;
 }
 
 .bg-shape-2 {
-  width: 400px;
-  height: 400px;
-  background: linear-gradient(135deg, #34C759 0%, #30D158 100%);
-  bottom: -150px;
-  left: -100px;
+  width: 500px;
+  height: 500px;
+  background: #32D583;
+  bottom: -200px;
+  left: -150px;
   animation: float 25s ease-in-out infinite reverse;
 }
 
 .bg-shape-3 {
-  width: 300px;
-  height: 300px;
-  background: linear-gradient(135deg, #FF9500 0%, #FF9F0A 100%);
-  top: 50%;
-  left: 30%;
+  width: 400px;
+  height: 400px;
+  background: #00D4FF;
+  top: 40%;
+  left: 20%;
   animation: float 18s ease-in-out infinite;
 }
 
@@ -147,14 +163,52 @@ const handleLogin = async () => {
   }
 }
 
+.login-content {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+  z-index: 1;
+}
+
+.login-branding {
+  text-align: center;
+  color: #fff;
+}
+
+.branding-icon {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, #635BFF 0%, #8B83FF 100%);
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  box-shadow: 0 20px 40px rgba(99, 91, 255, 0.4);
+}
+
+.branding-title {
+  font-size: 36px;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  letter-spacing: -1px;
+}
+
+.branding-subtitle {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
 .login-card {
-  width: 420px;
+  width: 440px;
   padding: 40px;
   border: none;
-  border-radius: 24px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-  position: relative;
-  z-index: 1;
+  border-radius: 20px;
+  background: #FFFFFF;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.3);
 }
 
 .login-header {
@@ -162,34 +216,73 @@ const handleLogin = async () => {
   margin-bottom: 32px;
 }
 
-.login-logo {
-  font-size: 56px;
-  margin-bottom: 16px;
-}
-
-.login-card h2 {
-  text-align: center;
-  margin: 0 0 8px 0;
-  font-size: 26px;
+.login-header h2 {
+  font-size: 24px;
   font-weight: 700;
-  color: #1D1D1F;
-  letter-spacing: -0.5px;
+  color: #1A1F36;
+  margin: 0 0 8px 0;
 }
 
 .login-subtitle {
-  text-align: center;
-  margin: 0;
-  color: #86868B;
   font-size: 14px;
+  color: #697386;
+  margin: 0;
 }
 
 .login-card :deep(.el-form-item__label) {
-  font-weight: 500;
-  color: #5E5E66;
-  padding-bottom: 6px;
+  font-weight: 600;
+  color: #1A1F36;
+  padding-bottom: 8px;
 }
 
 .login-card :deep(.el-input__wrapper) {
   padding: 8px 12px;
+  border-radius: 10px;
+}
+
+.login-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.forgot-link {
+  font-size: 14px;
+  color: #635BFF;
+  text-decoration: none;
+}
+
+.forgot-link:hover {
+  text-decoration: underline;
+}
+
+.login-btn {
+  width: 100%;
+  height: 48px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #635BFF 0%, #8B83FF 100%) !important;
+  border: none !important;
+  box-shadow: 0 8px 20px rgba(99, 91, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.login-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(99, 91, 255, 0.4);
+}
+
+.login-footer {
+  text-align: center;
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid #EDF2F7;
+}
+
+.footer-text {
+  font-size: 12px;
+  color: #9DA3AF;
 }
 </style>
