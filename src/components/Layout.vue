@@ -80,7 +80,7 @@
         </div>
         <div class="header-right">
           <!-- 快捷操作 -->
-          <el-button type="primary" size="small" class="quick-action">
+          <el-button type="primary" size="small" class="quick-action" @click="handleNewReconciliation">
             <el-icon><Plus /></el-icon>
             新建对账
           </el-button>
@@ -148,6 +148,10 @@ const handleLogout = () => {
   localStorage.clear()
   router.push('/login')
 }
+
+const handleNewReconciliation = () => {
+  router.push('/results')
+}
 </script>
 
 <style scoped>
@@ -190,15 +194,17 @@ const handleLogout = () => {
   font-weight: 700;
   color: #fff;
   letter-spacing: -0.5px;
+  line-height: 40px;
 }
 
 .logo-subtitle {
   font-size: 11px;
   color: var(--sidebar-text);
-  margin-top: 4px;
+  margin-top: 0px;
   margin-left: 52px;
   text-transform: uppercase;
   letter-spacing: 1px;
+  line-height: 20px;
 }
 
 .sidebar-menu {
@@ -219,8 +225,8 @@ const handleLogout = () => {
 }
 
 .sidebar-menu .el-menu-item:hover {
-  background: var(--sidebar-hover-bg);
-  color: #FFFFFF;
+  background: rgba(99, 91, 255, 0.2);
+  color: #FFFFFF !important;
 }
 
 .sidebar-menu .el-menu-item.is-active {
