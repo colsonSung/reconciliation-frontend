@@ -144,15 +144,13 @@ const pageTitle = computed(() => {
   return titles[route.path] || '财务对账系统'
 })
 
-const handleLogout = () => {
-  localStorage.clear()
-  router.push('/login')
-}
-
 const handleNewReconciliation = () => {
   router.push('/results')
 }
-</script>
+
+const handleLogout = () => {
+  localStorage.clear()
+  router.push('/login')
 
 <style scoped>
 .layout-container {
@@ -224,7 +222,7 @@ const handleNewReconciliation = () => {
   transition: all 0.2s ease;
 }
 
-.sidebar-menu .el-menu-item:hover {
+.sidebar-menu .el-menu-item:hover { color: #fff !important;
   background: rgba(99, 91, 255, 0.2);
   color: #FFFFFF !important;
 }
